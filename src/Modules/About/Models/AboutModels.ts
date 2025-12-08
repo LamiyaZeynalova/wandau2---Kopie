@@ -1,0 +1,1 @@
+// buarada tipler olacaq - string falan 

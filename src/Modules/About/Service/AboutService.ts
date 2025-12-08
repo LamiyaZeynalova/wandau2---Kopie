@@ -1,0 +1,1 @@
+// gelen datalar maplenir. eger lazm olarsa tokende burada olacaq . gelen datanin uzerinde eger nese deyisiklik olarsa burada qeyd olunacaq 

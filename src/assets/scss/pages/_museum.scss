@@ -1,0 +1,182 @@
+.museum {
+  background-color: rgb(255, 251, 247);
+  padding: 80px 0;
+  min-height: 100vh;
+
+  .container {
+    .row {
+      flex-direction: column;
+      gap: 30px;
+
+      .top {
+        text-align: center;
+        margin-bottom: 60px;
+
+        img {
+          width: 40px;
+          height: auto;
+          margin-bottom: 20px;
+        }
+
+        .title {
+          font-size: 3.5em;
+          font-weight: 400;
+          color: #333;
+          line-height: 1.2;
+          text-transform: uppercase;
+          font-family: Georgia, "Times New Roman", Times, serif;
+        }
+      }
+
+      .bottom {
+        display: flex;
+        gap: 80px;
+        width: 100%;
+
+        .letfSide {
+          max-width: 65%;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
+        }
+
+        .rightSide {
+          max-width: 35%;
+          padding-top: 10px;
+          margin-top: 60px;
+
+          > div {
+            margin-bottom: 60px;
+          }
+
+          .logo {
+            display: flex;
+            align-items: flex-start;
+            gap: 35px;
+
+            img {
+              width: 44px;
+              height: 44px;
+              margin-top: 5px;
+            }
+          }
+
+          .desc {
+            .smallTitle {
+              font-size: 22px;
+              font-weight: 600;
+              color: #333;
+              text-transform: uppercase;
+              margin: 18px 0 16px 0;
+            }
+
+            .text {
+              font-size: 17px;
+              color: #666;
+              margin: 0;
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  @media (max-width: 1024px) {
+    padding: 60px 0;
+
+    .top .title {
+      font-size: 2.8em;
+    }
+
+    .bottom {
+      flex-direction: column;
+      gap: 50px;
+      width: 100%;
+
+      .letfSide {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .rightSide {
+        margin-top: 30px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 50px 20px;
+
+    .top .title {
+      font-size: 2.4em;
+    }
+
+    .bottom {
+      flex-direction: column;
+      gap: 40px;
+
+      .letfSide,
+      .rightSide {
+        max-width: 100%;
+        flex: none;
+      }
+
+      .rightSide {
+        margin-top: 0;
+        padding-top: 0;
+      }
+    }
+
+    .desc .smallTitle {
+      font-size: 20px;
+    }
+
+    .desc .text {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 40px 16px;
+
+    .top img {
+      width: 32px;
+    }
+
+    .top .title {
+      font-size: 1.9em;
+    }
+
+    .bottom {
+      gap: 30px;
+
+      .rightSide {
+        > div {
+          margin-bottom: 40px;
+        }
+
+        .logo {
+          gap: 20px;
+
+          img {
+            width: 36px;
+            height: 36px;
+          }
+        }
+
+        .desc .smallTitle {
+          font-size: 18px;
+        }
+
+        .desc .text {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

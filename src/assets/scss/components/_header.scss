@@ -1,0 +1,201 @@
+.header {
+  padding: 30px 0;
+  position: relative;
+  width: 100%;
+  z-index: 999;
+  background: #fff;
+
+  .container {
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .logo {
+        .logoHome img {
+          width: 220px;
+          height: 65px;
+          max-width: 100%;
+        }
+      }
+
+      .navBar {
+        .navList {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 45px;
+          gap: 30px;
+          font-size: 18px;
+
+          a {
+            color: #080808;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: #94ffc4;
+            }
+          }
+        }
+      }
+
+      .headerIcons {
+        display: flex;
+        gap: 28px;
+        font-size: 25px;
+
+        .searchIcon {
+          margin-top: 8px;
+          cursor: pointer;
+
+          &:hover {
+            color: #94ffc4;
+          }
+        }
+        .cartIcon {
+          display: flex;
+          align-items: center;
+          margin-top: 5px;
+          .shopCartIcon {
+            color: #000;
+            height: 25px;
+            width: 25px;
+            &:hover {
+              opacity: 0.8;
+              color: #94ffc4;
+            }
+          }
+        }
+
+        .burgerIcon {
+          display: none; 
+          font-size: 30px;
+          margin-top: 5px;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .headerBtn button {
+        border-radius: 22px;
+        font-size: 15px;
+        padding: 12px 24px;
+        font-weight: 600;
+        background-color: #94ffc4;
+        color: #080808;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-left: -30px;
+
+        &:hover {
+          background-color: #080808;
+          color: #ffffff;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    padding: 40px 25px;
+    transition: right 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 100000;
+
+    &.open {
+      right: 0;
+    }
+
+    a {
+      font-size: 18px;
+      margin-bottom: 18px;
+      text-decoration: none;
+      color: #080808;
+
+      &:hover {
+        color: #94ffc4;
+      }
+    }
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 99998;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 20px 30px;
+
+    .container .row {
+      .navBar {
+        display: none;
+      }
+
+      .headerBtn {
+        display: none;
+      }
+
+      .headerIcons {
+        gap: 18px;
+
+        .burgerIcon {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+
+    .container .row {
+      .logo .logoHome img {
+        width: 180px;
+        height: auto;
+      }
+
+      .headerIcons {
+        gap: 18px;
+
+        .burgerIcon {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.header-home {
+  position: absolute;
+  background: none;
+}

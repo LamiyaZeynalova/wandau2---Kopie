@@ -1,0 +1,24 @@
+@use "./base";
+
+//components
+@use "./components/header";
+@use "./components/footer";
+@use "./components/search";
+@use "./components/cartComponent";
+
+
+//pages
+@use "./pages/about";
+@use "./pages/exhibitions";
+@use "./pages/shop";
+@use "./pages/shopDetails";
+@use "./pages/contact";
+@use "./pages/loading";
+@use "./pages/exhibitionsDetails";
+@use "./pages/hero";
+@use "./pages/art";
+@use "./pages/museum";
+@use "./pages/join";
+@use "./pages/events";
+@use "./pages/news";
+@use "../scss/pages/cart";
