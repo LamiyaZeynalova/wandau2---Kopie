@@ -84,7 +84,10 @@ const Header = () => {
               >
                 <FiSearch />
               </div>
-              <div className="cartIcon" onClick={() => dispatch(toggleCart(true))}>
+              <div
+                className="cartIcon"
+                onClick={() => dispatch(toggleCart(true))}
+              >
                 {/* <Link to={"/cart"}> */}
                 <FaShoppingCart className="shopCartIcon" />
                 {/* </Link> */}
@@ -144,13 +147,16 @@ const Header = () => {
                 <div className="searchLoading">Loading...</div>
               ) : (
                 products.map((item) => (
-                  <li key={item._id}>
+                  <li key={item._id} className="search-item">
+                    {/* <div className="img-container">
+                      <img src={item.productImage} alt={item.name} />
+                    </div> */}
                     <h5>
                       <Link to={`/shopDetails/${item._id}`} onClick={resetData}>
                         {item.name}
                       </Link>
                     </h5>
-                    <span>{item.details}</span>
+                    <span className="search-detail">{item.details}</span>
                   </li>
                 ))
               )}

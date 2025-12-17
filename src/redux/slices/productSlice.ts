@@ -4,14 +4,17 @@ import type { IProduct } from "../../Modules/Shop/Models/ShopModel";
 export interface ICartProduct extends IProduct {
   quantity: number;
 }
+
 export interface IProductSlice {
   cart: ICartProduct[];
   cartCount: number;
   price: number;
   cartOpen: boolean;
 }
+
+const savedCart = localStorage.getItem("cart");
 const initialState: IProductSlice = {
-  cart: [],
+  cart: savedCart ? JSON.parse(savedCart) : [],
   cartCount: 0,
   price: 0,
   cartOpen: false,
@@ -32,22 +35,25 @@ export const productSlice = createSlice({
         (sum, item) => sum + item.price * item.quantity,
         0
       );
+
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     addToCart: (state, action: PayloadAction<IProduct>) => {
-      const existing = state.cart.find(
+      const existingItem = state.cart.find(
         (item) => item._id === action.payload._id
       );
-      if (existing) {
-        state.cart = state.cart.filter((item) => {
-          if (item._id === existing._id && item.quantity) {
-            return { ...item, quantity: item.quantity++ };
-          } else {
-            return item;
-          }
-        });
+
+      const quantityToAdd = action.payload.quantity ?? 1;
+
+      if (existingItem) {
+        existingItem.quantity += quantityToAdd;
       } else {
-        state.cart = [...state.cart, { ...action.payload, quantity: 1 }];
+        state.cart.push({
+          ...action.payload,
+          quantity: quantityToAdd,
+        } as ICartProduct);
       }
+
       productSlice.caseReducers.calculateCartCount(state);
       productSlice.caseReducers.calculateTotalPrice(state);
     },
@@ -60,30 +66,20 @@ export const productSlice = createSlice({
       const existing = state.cart.find((item) => item._id === action.payload);
       if (existing) {
         existing.quantity++;
-        productSlice.caseReducers.calculateCartCount(state);
       }
-      state.price = state.cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
+      productSlice.caseReducers.calculateCartCount(state);
       productSlice.caseReducers.calculateTotalPrice(state);
     },
     decrementQuantity: (state, action: PayloadAction<string>) => {
       const existing = state.cart.find((item) => item._id === action.payload);
       if (existing && existing.quantity > 1) {
         existing.quantity--;
-        productSlice.caseReducers.calculateCartCount(state);
       } else if (existing && existing.quantity === 1) {
         state.cart = state.cart.filter((item) => item._id !== action.payload);
-        productSlice.caseReducers.calculateCartCount(state);
       }
-      state.price = state.cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
+      productSlice.caseReducers.calculateCartCount(state);
       productSlice.caseReducers.calculateTotalPrice(state);
     },
-
     toggleCart(state, action: PayloadAction<boolean>) {
       state.cartOpen = action.payload;
     },

@@ -9,6 +9,7 @@ import {
   toggleCart,
 } from "../redux/slices/productSlice";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CartComponent: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,17 +18,65 @@ const CartComponent: React.FC = () => {
     (s: RootState) => s.productSlice
   );
 
-  
+  const handleDelete = (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+
+      scrollbarPadding: false,
+      heightAuto: false,
+
+      willOpen: () => {
+        const container = Swal.getContainer();
+        if (container) {
+          container.style.zIndex = "100000";
+        }
+      },
+
+      didClose: () => {
+        document.body.style.overflow = "auto";
+        document.body.style.paddingRight = "0px";
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(removeCart(id));
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Item has been removed from your cart.",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+          scrollbarPadding: false,
+          heightAuto: false,
+          willOpen: () => {
+            const container = Swal.getContainer();
+            if (container) {
+              container.style.zIndex = "100000";
+            }
+          },
+          didClose: () => {
+            document.body.style.overflow = "auto";
+            document.body.style.paddingRight = "0px";
+          },
+        });
+      }
+    });
+  };
+
   const close = () => dispatch(toggleCart(false));
 
   if (!cartOpen) return null;
 
   return (
     <>
-     
       <div className="cart-overlay" onClick={close} />
 
-      {/* Panel */}
       <aside
         className="cart-panel"
         role="dialog"
@@ -63,7 +112,7 @@ const CartComponent: React.FC = () => {
                 <div className="cart-card__body">
                   <div className="cart-card__top">
                     <div className="cart-card__name">{item.name}</div>
-                    <div className="cart-card__price">${item.price*item.quantity}</div>
+                    <div className="cart-card__price">${item.price}</div>
                     <div className="cart-card__controls">
                       <button
                         className={`qty-btn`}
@@ -92,11 +141,7 @@ const CartComponent: React.FC = () => {
                 <button
                   className="cart-card__delete"
                   aria-label={`Remove ${item.name}`}
-                  onClick={() => {
-                    if (window.confirm("Delete this item?")) {
-                      dispatch(removeCart(item._id));
-                    }
-                  }}
+                  onClick={() => handleDelete(item._id)}
                   type="button"
                 >
                   <FaTrash />

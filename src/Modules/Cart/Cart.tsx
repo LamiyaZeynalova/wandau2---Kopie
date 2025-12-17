@@ -2,6 +2,7 @@ import { useAppSelector } from "../../redux/hooks";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.productSlice.cart);
+
   return (
     <section className="cart">
       <div className="container">
@@ -10,7 +11,7 @@ const Cart = () => {
           <div className="cartProducts">
             <ul className="cartList">
               {cart.map((item) => (
-                <li className="cartProduct">
+                <li className="cartProduct" key={item._id}>
                   <div className="cartProductImg">
                     <img src={item.productImage} alt={item.name} />
                   </div>

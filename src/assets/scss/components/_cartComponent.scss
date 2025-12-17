@@ -5,6 +5,10 @@
   z-index: 99998;
 }
 
+// .swal2-container {
+//   z-index: 100000 !important;
+// }
+
 .cart-panel {
   position: fixed;
   right: 0;
@@ -24,7 +28,7 @@
   height: 90px;
   min-height: 90px;
   width: 100%;
-  background: #D97C5B;
+  background: #d97c5b;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +42,6 @@
   color: #000;
   margin: 0;
   text-transform: none;
-  
 }
 
 .cart-close {
@@ -70,7 +73,7 @@
 
 .cart-card {
   width: 418px;
-  max-width: calc(100% - 1px); 
+  max-width: calc(100% - 1px);
   height: 122px;
   display: flex;
   align-items: flex-start;
@@ -121,7 +124,7 @@
 
 .cart-card__price {
   font-size: 16px;
-  color: #D97C5B;
+  color: #d97c5b;
   font-weight: 600;
 }
 
@@ -135,7 +138,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid #D97C5B;
+  border: 1px solid #d97c5b;
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -157,7 +160,7 @@
   top: 8px;
   border: none;
   background: transparent;
-  color: #D97C5B;
+  color: #d97c5b;
   cursor: pointer;
   font-size: 18px;
 }
@@ -183,7 +186,7 @@
 
 .cart-total-value {
   font-size: 12px;
-  color: #D97C5B;
+  color: #d97c5b;
   font-weight: 700;
 }
 
@@ -198,15 +201,15 @@
 }
 
 .cart-btn--primary {
-  background: #D97C5B;
+  background: #d97c5b;
   color: #000;
   border: none;
 }
 
 .cart-btn--ghost {
   background: #fff;
-  color: #D97C5B;
-  border: 1px solid #D97C5B;
+  color: #d97c5b;
+  border: 1px solid #d97c5b;
 }
 
 @media (max-width: 480px) {
