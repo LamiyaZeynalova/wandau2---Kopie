@@ -1,5 +1,6 @@
 import centerImg from "../../../assets/images/image/centerLogo.jpg";
 import { useForm } from "react-hook-form";
+import emailjs from "@emailjs/browser";
 
 type ContactFormInputs = {
   name: string;
@@ -16,10 +17,36 @@ const Contact = () => {
     reset,
   } = useForm<ContactFormInputs>();
 
-  const onSubmit = (data: ContactFormInputs) => {
-    console.log("Form Data:", data);
-    alert("Form successfully submitted and validated!");
-    reset();
+  // const onSubmit = (data: ContactFormInputs) => {
+
+  //   console.log("Form Data:", data);
+  //   alert("Form successfully submitted and validated!");
+  //   reset();
+  // };
+
+const onSubmit = (data: ContactFormInputs) => {
+    const templateParams = {
+      user_name: data.name,
+      user_email: data.email,
+      user_number: data.number,
+      message: data.message,
+    };
+
+    emailjs
+      .send(
+        "service_6fy52yq",     //   Service ID
+        "template_bgb44vj",    //   Template ID
+        templateParams,
+        "U3AlYXL-M-Gd9QIZt"    //  Public Key
+      )
+      .then(() => {
+        alert("Mesaj uğurla göndərildi!");
+        reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        alert("Mesaj göndərilə bilmədi.");
+      });
   };
 
   return (
